@@ -10,13 +10,13 @@
 </head>
 <body>
     <!-- Reply Edit Modal -->
-    <div id="editModal" class="modal">
-        <div class="modal-content glass-card">
+    <div id="editModal" class="modal" style="pointer-events: auto; z-index: 2147483647;">
+        <div class="modal-content glass-card" style="pointer-events: auto; z-index: 2147483647; position: relative;">
             <h3>답글 수정</h3>
-            <textarea id="modalEditContent" rows="5" placeholder="수정할 내용을 입력하세요"></textarea>
-            <div class="modal-actions">
-                <button type="button" class="board-btn" onclick="window.saveEditModal()">저장</button>
-                <button type="button" class="board-btn cancel-style" onclick="window.closeEditModal()">취소</button>
+            <textarea id="modalEditContent" rows="5" placeholder="수정할 내용을 입력하세요" style="pointer-events: auto; position: relative; z-index: 2147483647;"></textarea>
+            <div class="modal-actions" style="pointer-events: auto; position: relative; z-index: 2147483647;">
+                <button type="button" class="board-btn" onclick="console.log('Save clicked'); window.saveEditModal()" style="pointer-events: auto !important; position: relative; z-index: 2147483647; cursor: pointer;">저장</button>
+                <button type="button" class="board-btn cancel-style" onclick="window.closeEditModal()" style="pointer-events: auto !important; position: relative; z-index: 2147483647; cursor: pointer;">취소</button>
             </div>
         </div>
     </div>
@@ -66,7 +66,10 @@
             <div class="section-header" data-aos="fade-up">
                 <h2 class="badge">Academic Background</h2>
                 <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Technical Base: 장비 해석 역량의 근간</h2>
-                <p style="margin-bottom: 50px; opacity: 0.8; max-width: 800px;">컴퓨팅 사고(CS)를 기반으로 하드웨어와 소프트웨어의 유기적 메커니즘을 심화 학습했습니다.</p>
+                <p style="margin-bottom: 20px; opacity: 0.8; max-width: 800px;">컴퓨팅 사고(CS)를 기반으로 하드웨어와 소프트웨어의 유기적 메커니즘을 심화 학습했습니다.</p>
+                <div style="margin-bottom: 50px;">
+                    <a href="https://www.dongyang.ac.kr/dmu/4479/subview.do" target="_blank" class="contact-link" style="font-size: 0.9rem; border-bottom: 1px solid var(--secondary);">동양미래대학교 학과 홈페이지 바로가기 →</a>
+                </div>
             </div>
             
             <div class="tech-grid">
@@ -165,7 +168,7 @@
                         <div class="roadmap-dot"></div>
                         <div class="roadmap-content">
                             <h4>Year 1: Foundation & Adaption</h4>
-                            <p>AMK 장비 시스템 숙달 및 반도체 유지보수 부트캠프 집중 이수. 생산 가동률 극대화를 위한 기본기 확보.</p>
+                            <p>AMK 장비 시스템 숙달 및 <a href="http://bootcamp.dongyang.ac.kr" target="_blank" style="color: var(--secondary); text-decoration: underline;">반도체 유지보수 부트캠프</a> 집중 이수. 생산 가동률 극대화를 위한 기본기 확보.</p>
                         </div>
                     </div>
                     <div class="roadmap-item">
@@ -191,7 +194,11 @@
     <section id="community" class="section">
         <div class="container">
             <h2 class="badge">Engagement</h2>
-            <h2 style="font-size: 2.5rem; margin-bottom: 40px; text-align: center;">자유게시판: 기술 소통 및 피드백</h2>
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; text-align: center;">자유게시판: 기술 소통 및 피드백</h2>
+            <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 40px;">
+                <a href="https://youtube.com/@auto2con" target="_blank" class="board-btn" style="padding: 10px 20px; font-size: 0.9rem; background: rgba(255,0,0,0.2); border-color: #ff0000; color: #ffffff;">YouTube 로봇자동화 채널</a>
+                <a href="http://cafe.naver.com/dyrobot" target="_blank" class="board-btn" style="padding: 10px 20px; font-size: 0.9rem; background: rgba(3,207,93,0.2); border-color: #03cf5d; color: #ffffff;">DY Robot 네이버 카페</a>
+            </div>
             
             <div class="board-container">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">

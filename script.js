@@ -33,13 +33,21 @@ window.closeEditModal = () => {
 };
 
 window.saveEditModal = () => {
+    // Diagnostic Alert
+    console.log("saveEditModal triggered");
+    
     const modal = document.getElementById('editModal');
     const textarea = document.getElementById('modalEditContent');
-    if (!modal || !textarea) return;
+    if (!modal || !textarea) { alert("오류: 모달 요소를 찾을 수 없습니다."); return; }
 
     const postId = modal.getAttribute('data-post-id');
     const replyId = modal.getAttribute('data-reply-id');
-    if (!postId || !replyId) { window.closeEditModal(); return; }
+    
+    if (!postId || !replyId) { 
+        alert("오류: 데이터 ID가 누락되었습니다. 다시 시도해주세요.");
+        window.closeEditModal(); 
+        return; 
+    }
 
     const postIndex = window.posts.findIndex(p => String(p.id) === String(postId));
     if (postIndex === -1) { window.closeEditModal(); return; }
