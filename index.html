@@ -9,17 +9,29 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <!-- Reply Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content glass-card">
+            <h3>답글 수정</h3>
+            <textarea id="modalEditContent" rows="5" placeholder="수정할 내용을 입력하세요"></textarea>
+            <div class="modal-actions">
+                <button type="button" class="board-btn" onclick="window.saveEditModal()">저장</button>
+                <button type="button" class="board-btn cancel-style" onclick="window.closeEditModal()">취소</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Navigation -->
     <nav id="navbar">
         <div class="container">
             <a href="#" class="logo">AMK<span>_ENG_CHOI</span></a>
             <ul class="nav-links">
-                <li><a href="#home">Vision</a></li>
+                <li><a href="#home">Home</a></li>
                 <li><a href="#academic">Academic</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#roadmap">Roadmap</a></li>
                 <li><a href="#community">Board</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -28,7 +40,7 @@
     <header id="home" class="hero">
         <div class="container hero-content">
             <div class="badge" data-aos="fade-up">SEMICONDUCTOR EQUIPMENT SPECIALIST</div>
-            <h1 data-aos="fade-up">데이터로 진단하고 논리로 해결하는<br><span class="emphasis">준비된 유지보수 엔지니어</span></h1>
+            <h1 data-aos="fade-up">데이터로 진단하고 논리로 해결하는<br><span class="emphasis">준비된 유지보수 미래의 엔지니어 최영현</span></h1>
             <p data-aos="fade-up" style="animation-delay: 0.2s;">"나는 컴퓨팅 사고(CS)를 기반으로 장비의 메커니즘을 데이터로 해석하며,<br>Applied Materials의 가동률 100%를 향한 기술적 신뢰를 완성합니다."</p>
             
             <div class="tech-grid" style="margin-top: 60px;">
@@ -187,17 +199,22 @@
                     <button id="writeBtn" class="board-btn">글쓰기</button>
                 </div>
 
-                <!-- Post Form -->
-                <form id="postForm" class="board-form">
-                    <input type="hidden" id="postId">
-                    <input type="text" id="postTitle" placeholder="제목을 입력하세요" required>
-                    <input type="text" id="postAuthor" placeholder="작성자 명" required>
-                    <textarea id="postContent" rows="5" placeholder="내용을 입력하세요" required></textarea>
-                    <div style="display: flex; gap: 10px;">
-                        <button type="submit" class="board-btn" style="flex: 1;">저장</button>
-                        <button type="button" id="cancelBtn" class="board-btn" style="flex: 1; background: transparent; border-color: var(--glass-border);">취소</button>
+                <!-- Post Modal (For New & Edit) -->
+                <div id="postModal" class="modal">
+                    <div class="modal-content glass-card">
+                        <h3 id="postModalTitle">글 쓰기</h3>
+                        <form id="postForm" class="board-form">
+                            <input type="hidden" id="postId">
+                            <input type="text" id="postTitle" placeholder="제목을 입력하세요" required>
+                            <input type="text" id="postAuthor" placeholder="작성자 명" required>
+                            <textarea id="postContent" rows="5" placeholder="내용을 입력하세요" required></textarea>
+                            <div style="display: flex; gap: 10px;">
+                                <button type="submit" class="board-btn" style="flex: 1;">저장</button>
+                                <button type="button" class="board-btn cancel-style" style="flex: 1;" onclick="window.closePostModal()">취소</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
 
                 <!-- Post List -->
                 <div id="postList" class="board-list">
@@ -217,12 +234,46 @@
         </div>
     </section>
 
+    <!-- Section 6: Contact -->
+    <section id="contact" class="section" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Contact <span>Me</span></h2>
+            <p class="section-subtitle" style="text-align: center; margin-bottom: 40px;">문의사항이 있으시면 아래 양식을 통해 연락 부탁드립니다.</p>
+            
+            <div class="glass-card" style="width: 95%; max-width: 1000px; margin: 0 auto; padding: 50px; position: relative; z-index: 10;">
+                <form id="contactForm" style="position: relative; z-index: 20;">
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label for="contactName" style="display: block; margin-bottom: 10px; font-weight: 500; font-size: 1.1rem;">성함 / 소속</label>
+                        <input type="text" id="contactName" placeholder="최영현 / AMK 기구부" style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 8px; color: var(--white); font-size: 1.05rem; pointer-events: auto !important; position: relative; z-index: 30;" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label for="contactEmail" style="display: block; margin-bottom: 10px; font-weight: 500; font-size: 1.1rem;">회신 받을 이메일 주소</label>
+                        <input type="email" id="contactEmail" placeholder="example@email.com" style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 8px; color: var(--white); font-size: 1.05rem; pointer-events: auto !important; position: relative; z-index: 30;" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 35px;">
+                        <label for="contactMessage" style="display: block; margin-bottom: 10px; font-weight: 500; font-size: 1.1rem;">문의 내용</label>
+                        <textarea id="contactMessage" rows="6" placeholder="문의하실 내용을 상세히 입력해주세요." style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 8px; color: var(--white); font-family: inherit; font-size: 1.05rem; pointer-events: auto !important; position: relative; z-index: 30;" required></textarea>
+                    </div>
+                    <button type="submit" class="board-btn" style="width: 100%; padding: 18px; font-size: 1.2rem; pointer-events: auto !important; position: relative; z-index: 30;">문의 보내기</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <p>&copy; 2026 CHOI YOUNG HYUN. Optimized for Apply Materials Korea & Samsung Electronics Recruitment.</p>
             <p style="font-size: 0.7rem; opacity: 0.5; margin-top: 10px;">Built with Precision Grid & Technical Logic via Antigravity AI.</p>
         </div>
     </footer>
+
+    <!-- Floating Home Button -->
+    <div class="fab-home" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Go to Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+    </div>
 
     <script src="script.js"></script>
 </body>
