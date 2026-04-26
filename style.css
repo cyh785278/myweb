@@ -203,7 +203,8 @@ nav .container {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
+    padding-top: 100px; /* Account for fixed navbar */
     display: flex;
     align-items: center;
     justify-content: center;
